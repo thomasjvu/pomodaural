@@ -20,7 +20,7 @@ const Home: React.FC = () => {
 
     return (
         <Layout>
-            <div id="page-home" className="flex flex-col justify-center items-center gap-10 w-1/2">
+            <div id="page-home" className="flex flex-col justify-start items-center gap-10 w-1/2">
                 <div className="flex justify-between w-1/2">
                 </div>
                 <button onClick={handleSwitchTimer} className="font-display uppercase tracking-wider">

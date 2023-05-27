@@ -6,7 +6,11 @@ export default {
             display: ["Cal Sans", "sans-serif"],
             mono: ["Consolate Elf", "monospace"],
         },
-        extend: {},
+        extend: {
+            width: {
+                '128': '32rem',
+            },
+        },
     },
     plugins: [require("daisyui")],
     daisyui: {

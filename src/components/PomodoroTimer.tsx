@@ -79,8 +79,8 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ workTime, breakTime }) =>
     };
 
     return (
-        <div id="timer-group" className="flex flex-col gap-20 w-full justify-center items-center">
-            <div className="p-10 bg-base-200 rounded w-96 flex flex-col justify-center items-center">
+        <div id="timer-group" className="flex flex-col gap-16 w-full justify-center items-center">
+            <div className="p-10 bg-base-200 rounded w-128 flex flex-col justify-center items-center">
                 <span id="timer" className="text-9xl font-display">
                     {formatTime(timer)}
                 </span>

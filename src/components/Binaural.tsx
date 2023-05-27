@@ -78,71 +78,76 @@ const Binaural: React.FC = (): JSX.Element => {
     }, []);
 
     return (
-        <div id="binaural-controls" className="flex flex-col gap-5">
-            <div>
-                <label htmlFor="frequency1" className="font-mono">Frequency 1:</label>
-                <input
-                    type="range"
-                    id="frequency1Slider"
-                    min="1"
-                    max="1000"
-                    step="1"
-                    value={frequency1}
-                    onChange={updateFrequency1}
-                    className="range"
-                />
-                <div className="flex justify-between font-mono items-center">
+        <div id="binaural-controls" className="flex flex-col gap-5 w-full">
+            <div className="flex justify-between gap-20">
+                <div className="flex gap-5 flex-col">
+                    <label htmlFor="frequency1" className="font-mono">Frequency 1:</label>
                     <input
-                        type="number"
-                        id="frequency1Input"
+                        type="range"
+                        id="frequency1Slider"
                         min="1"
-                        max="20000"
+                        max="1000"
                         step="1"
                         value={frequency1}
                         onChange={updateFrequency1}
-                        className="input input-bordered bg-neutral text-white"
+                        className="range"
                     />
-                    <span id="frequency1Value">{frequency1}Hz</span>
+                    <div className="flex gap-5 justify-between font-mono items-center">
+                        <input
+                            type="number"
+                            id="frequency1Input"
+                            min="1"
+                            max="20000"
+                            step="1"
+                            value={frequency1}
+                            onChange={updateFrequency1}
+                            className="input input-bordered bg-neutral text-white"
+                        />
+                        <span id="frequency1Value">{frequency1}Hz</span>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <label htmlFor="frequency2" className="font-mono">Frequency 2:</label>
-                <input
-                    type="range"
-                    id="frequency2Slider"
-                    min="1"
-                    max="1000"
-                    step="1"
-                    value={frequency2}
-                    onChange={updateFrequency2}
-                    className="range"
-                />
-                <div className="flex justify-between font-mono items-center">
+                <div className="flex flex-col gap-5">
+                    <label htmlFor="frequency2" className="font-mono">Frequency 2:</label>
                     <input
-                        type="number"
-                        id="frequency2Input"
+                        type="range"
+                        id="frequency2Slider"
                         min="1"
-                        max="20000"
+                        max="1000"
                         step="1"
                         value={frequency2}
                         onChange={updateFrequency2}
-                        className="input input-bordered bg-neutral text-white"
+                        className="range"
                     />
-                    <span id="frequency2Value">{frequency2}Hz</span>
+                    <div className="flex gap-5 justify-between font-mono items-center">
+                        <input
+                            type="number"
+                            id="frequency2Input"
+                            min="1"
+                            max="20000"
+                            step="1"
+                            value={frequency2}
+                            onChange={updateFrequency2}
+                            className="input input-bordered bg-neutral text-white"
+                        />
+                        <span id="frequency2Value">{frequency2}Hz</span>
+                    </div>
                 </div>
             </div>
             {/* play and pause buttons */}
-            <div id="controls" className="flex w-full justify-between">
-                <button id="playButton" onClick={handlePlay} disabled={isPlaying} className={`btn w-[47.5%]`}>
-                    🎧 Play
-                </button>
-                <button id="pauseButton" onClick={handlePause} disabled={!isPlaying} className={`btn w-[47.5%]`}>
+            <div id="controls" className="flex w-full justify-between gap-5">
+                {isPlaying ? (
+                <button id="pauseButton" onClick={handlePause} disabled={!isPlaying} className={`btn w-full`}>
                     ⏹ Stop
                 </button>
+                ):
+                    <button id="playButton" onClick={handlePlay} disabled={isPlaying} className={`btn w-full`}>
+                        🎧 Play
+                    </button>
+                }
             </div>
             <div className="flex flex-col gap-2">
-                <h2 className="text-4xl font-display">Presets:</h2>
-                <div id="preset-buttons" className="flex gap-5 justify-between items-center">
+                <h2 className="text-3xl font-display">Presets</h2>
+                <div id="preset-buttons" className="flex justify-between items-center">
                     <button
                         id="focusButton"
                         className="btn btn-accent"
@@ -180,13 +185,22 @@ const Binaural: React.FC = (): JSX.Element => {
                         Creativity
                     </button>
                     <button
-                        id="sleepButton"
+                        id="energyButton"
                         className="btn btn-accent"
                         onClick={() => {
                             setFrequency1(240);
                             setFrequency2(244);
                         }}>
                         Energy+
+                    </button>
+                    <button
+                        id="sleepButton"
+                        className="btn btn-accent"
+                        onClick={() => {
+                            setFrequency1(70);
+                            setFrequency2(66);
+                        }}>
+                        Sleep
                     </button>
                 </div>
             </div>
