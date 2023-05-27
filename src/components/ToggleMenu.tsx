@@ -35,12 +35,12 @@ const ToggleMenu: React.FC<ToggleMenuProps> = ({ isOpen, handleToggle }) => {
                             <p>
                                 This is paired with Binaural Beats and research is ongoing about how they can manipulate
                                 our brain states to achieve higher levels of focus and creativity depending on the
-                                specific frequency being heard.
+                                specific frequency.
                             </p>
                             <h3 className="text-left text-xl font-bold uppercase font-display">How to Use this App</h3>
                             <p>
                                 To begin, press the play button with the preset that depicts the state you want to be
-                                in, and then press start! The timer will go on for the intended duration
+                                in, and then press start! The timer will go on for the intended duration.
                             </p>
                         </div>
                     </div>
