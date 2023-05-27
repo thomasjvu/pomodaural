@@ -1,67 +1,111 @@
-const PomodoroTimer: React.FC = (): JSX.Element => {
-  let interval: NodeJS.Timeout;
-  let timer: number;
-  let isBreakTime: boolean;
+import React, { useEffect, useState, useRef } from "react";
 
-  function startPomodoro() {
-    const workTime = 1 * 60; // 1 minute in seconds
-    const breakTime = 1 * 60; // 5 minutes in seconds
+interface PomodoroTimerProps {
+  workTime: number;
+  breakTime: number;
+  isSwitched: boolean;
+}
 
-    const display = document.getElementById("timer") as HTMLElement;
-    const displayPhase = document.getElementById("display") as HTMLElement;
+const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ workTime, breakTime, isSwitched }) => {
+  const [timer, setTimer] = useState(workTime);
+  const [isBreakTime, setIsBreakTime] = useState(false);
+  const [isRunning, setIsRunning] = useState(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-    function resetTimer() {
-      clearInterval(interval);
-      timer = 0; // Reset the timer variable
-      isBreakTime = false; // Reset the break time flag
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isSwitched) {
+      // If the switch is toggled, update the timer immediately
+      setTimer(breakTime);
+      setIsBreakTime(true);
+    } else {
+      setTimer(workTime);
+      setIsBreakTime(false);
     }
+  }, [isSwitched, workTime, breakTime]);
 
-    function startTimer(display: HTMLElement) {
-      interval = setInterval(function () {
-        const minutes = Math.floor(timer / 60);
-        const seconds = timer % 60;
+  const startPomodoro = () => {
+    if (!isRunning) {
+      setIsRunning(true);
+      startTimer();
+    }
+  };
 
-        const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
-        const displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
+  const pausePomodoro = () => {
+    setIsRunning(false);
+    clearInterval(intervalRef.current!);
+  };
 
-        display.textContent = `${displayMinutes}:${displaySeconds}`;
+  const resetTimer = () => {
+    clearInterval(intervalRef.current!);
+    setIsRunning(false);
+    setIsBreakTime(false);
+    setTimer(workTime);
+  };
 
-        --timer;
+  const switchTimer = () => {
+    if (!isRunning) {
+      setIsBreakTime(!isBreakTime);
+      setTimer(isBreakTime ? workTime : breakTime);
+    }
+  };
 
-        if (timer < 0) {
-          clearInterval(interval);
-
+  const startTimer = () => {
+    intervalRef.current = setInterval(() => {
+      setTimer((prevTimer) => {
+        if (prevTimer === 1) {
+          clearInterval(intervalRef.current!);
           if (isBreakTime) {
-            displayPhase.textContent = "Done!";
-            resetTimer();
+            setIsBreakTime(false);
+            setTimer(workTime);
           } else {
-            displayPhase.textContent = "Break Time!";
-            timer = breakTime;
-            isBreakTime = true;
-            startTimer(display);
+            setIsBreakTime(true);
+            setTimer(breakTime);
           }
+          setIsRunning(false);
         }
-      }, 1000);
-    }
+        return prevTimer - 1;
+      });
+    }, 1000);
+  };
 
-    resetTimer();
-    displayPhase.textContent = "Work Time!";
-    timer = workTime;
-    isBreakTime = false;
-    startTimer(display);
-  }
+  const formatTime = (time: number): string => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
+    return `${displayMinutes}:${displaySeconds}`;
+  };
 
   return (
     <div id="timer-group" className="flex flex-col gap-20 w-full justify-center items-center">
       <div className="p-10 bg-base-200 rounded w-96 flex justify-center items-center">
-        <span id="timer" className="text-9xl font-display">25:00</span>
+        <span id="timer" className="text-9xl font-display">
+          {formatTime(timer)}
+        </span>
       </div>
-      <span id="display" className="text-7xl font-display"></span>
-      <div id="button-group" className="flex gap-5">
-        <button onClick={startPomodoro} className="btn rounded">30 Min (Pomodoro)</button>
-      </div>
+      <span id="display" className="text-7xl font-display">
+        {isBreakTime ? "Break Time!" : "Work Time!"}
+      </span>
+      <button onClick={isRunning ? pausePomodoro : startPomodoro} className="btn rounded">
+        {isRunning ? "Pause" : "Start"}
+      </button>
+      <button onClick={resetTimer} className="btn rounded">
+        Reset
+      </button>
+      <button onClick={switchTimer} className="btn rounded">
+        Switch Work/Break
+      </button>
     </div>
   );
 };
 
 export default PomodoroTimer;
+
