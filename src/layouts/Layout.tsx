@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   };
 
   return (
-    <div className="min-h-screen flex">
+    <div className="min-h-screen flex pb-5">
       <ToggleMenu isOpen={isMenuOpen} handleToggle={handleMenuToggle} />
       <div
         className={`flex flex-col flex-1 transition-all duration-300 ${

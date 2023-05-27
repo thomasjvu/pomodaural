@@ -85,7 +85,7 @@ const Binaural: React.FC = (): JSX.Element => {
                     type="range"
                     id="frequency1Slider"
                     min="1"
-                    max="20000"
+                    max="1000"
                     step="1"
                     value={frequency1}
                     onChange={updateFrequency1}
@@ -111,7 +111,7 @@ const Binaural: React.FC = (): JSX.Element => {
                     type="range"
                     id="frequency2Slider"
                     min="1"
-                    max="20000"
+                    max="1000"
                     step="1"
                     value={frequency2}
                     onChange={updateFrequency2}
@@ -132,15 +132,15 @@ const Binaural: React.FC = (): JSX.Element => {
                 </div>
             </div>
             {/* play and pause buttons */}
-            <div id="controls" className="flex w-full gap-5">
-                <button id="playButton" onClick={handlePlay} disabled={isPlaying} className={`btn w-1/2`}>
-                    Play
+            <div id="controls" className="flex w-full justify-between">
+                <button id="playButton" onClick={handlePlay} disabled={isPlaying} className={`btn w-[47.5%]`}>
+                    🎧 Play
                 </button>
-                <button id="pauseButton" onClick={handlePause} disabled={!isPlaying} className={`btn w-1/2`}>
-                    Pause
+                <button id="pauseButton" onClick={handlePause} disabled={!isPlaying} className={`btn w-[47.5%]`}>
+                    ⏹ Stop
                 </button>
             </div>
-            <div>
+            <div className="flex flex-col gap-2">
                 <h2 className="text-4xl font-display">Presets:</h2>
                 <div id="preset-buttons" className="flex gap-5 justify-between items-center">
                     <button
@@ -183,10 +183,10 @@ const Binaural: React.FC = (): JSX.Element => {
                         id="sleepButton"
                         className="btn btn-accent"
                         onClick={() => {
-                            setFrequency1(3);
-                            setFrequency2(3);
+                            setFrequency1(240);
+                            setFrequency2(244);
                         }}>
-                        Sleep
+                        Energy+
                     </button>
                 </div>
             </div>
