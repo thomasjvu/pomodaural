@@ -78,7 +78,7 @@ const Binaural: React.FC = (): JSX.Element => {
     }, []);
 
     return (
-        <div id="binaural-controls" className="flex flex-col gap-5 w-full">
+        <div id="binaural-controls" className="flex flex-col gap-5">
             <div className="flex justify-between gap-20">
                 <div className="flex gap-5 flex-col">
                     <label htmlFor="frequency1" className="font-mono">Frequency 1:</label>
