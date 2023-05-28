@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import dingSound from "../assets/sfx/ding.mp3";
 
 interface PomodoroTimerProps {
     workTime: number;
@@ -9,7 +10,9 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ workTime, breakTime }) =>
     const [timer, setTimer] = useState(workTime);
     const [isBreakTime, setIsBreakTime] = useState(false);
     const [isRunning, setIsRunning] = useState(false);
+    const [playDingSound, setPlayDingSound] = useState(false);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
 
     useEffect(() => {
         return () => {
@@ -57,17 +60,40 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ workTime, breakTime }) =>
             }
         }
     };
+
+    const handleDingSoundCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setPlayDingSound(event.target.checked);
+    };
+
     const startTimer = () => {
         intervalRef.current = setInterval(() => {
             setTimer((prevTimer) => {
                 if (prevTimer === 1) {
                     clearInterval(intervalRef.current!);
-                    setIsBreakTime((prevIsBreakTime) => !prevIsBreakTime);
                     setIsRunning(false);
+                    if (isBreakTime) {
+                        setIsBreakTime(false);
+                        setTimer(workTime);
+                        if (playDingSound) {
+                            playSound();
+                        }
+                    } else {
+                        setIsBreakTime(true);
+                        setTimer(breakTime);
+                        if (playDingSound) {
+                            playSound();
+                        }
+                    }
                 }
                 return prevTimer - 1;
             });
         }, 1000);
+    };
+
+    const playSound = () => {
+        if (audioRef.current) {
+            audioRef.current.play();
+        }
     };
 
     const formatTime = (time: number): string => {
@@ -79,15 +105,15 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ workTime, breakTime }) =>
     };
 
     return (
-        <div id="timer-group" className="flex flex-col gap-16 w-full justify-center items-center">
-            <div className="p-10 bg-base-200 rounded w-128 flex flex-col justify-center items-center">
+        <div id="timer-group" className="flex flex-col gap-20 w-full justify-center items-center">
+            <div className="p-10 bg-base-200 rounded w-96 flex justify-center items-center">
                 <span id="timer" className="text-9xl font-display">
                     {formatTime(timer)}
                 </span>
-                <span id="display" className="text-xl font-display uppercase">
-                    {isBreakTime ? "Break Time!" : "Work Time!"}
-                </span>
             </div>
+            <span id="display" className="text-7xl font-display">
+                {isBreakTime ? "Break Time!" : "Work Time!"}
+            </span>
             <div id="timer-buttons" className="flex gap-5 justify-between">
                 <button onClick={isRunning ? pausePomodoro : startPomodoro} className="btn rounded">
                     {isRunning ? "⏸ Pause" : "⏵ Start"}
@@ -98,7 +124,20 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ workTime, breakTime }) =>
                 <button onClick={switchTimer} className="btn rounded">
                     ⇄ Switch Mode
                 </button>
+                <div className="flex items-center gap-2">
+                    <label htmlFor="ding-sound-checkbox" className="text-lg font-medium">
+                        Chime:
+                    </label>
+                    <input
+                        type="checkbox"
+                        id="ding-sound-checkbox"
+                        checked={playDingSound}
+                        onChange={handleDingSoundCheckboxChange}
+                        className="toggle"
+                    />
+                </div>
             </div>
+            <audio ref={audioRef} src={dingSound} />
         </div>
     );
 };
