@@ -16,7 +16,7 @@ const ToggleMenu: React.FC<ToggleMenuProps> = ({ isOpen, handleToggle }) => {
                 {isOpen && (
                     <div className="flex flex-col items-center gap-10 px-16 w-full">
                         <Logo />
-                        <h1 className="text-justify font-display uppercase text-4xl leading-loose tracking-widest">
+                        <h1 className="text-justify font-display uppercase text-4xl leading-loose tracking-widest text-white">
                             Pomodaural
                         </h1>
                         <div id="about" className="flex flex-col gap-2 text-white">
