@@ -4,7 +4,7 @@ import { YoutubeFill, TwitterFill, SoundcloudFill } from "./Icons";
 const SocialIcons: React.FC = (): JSX.Element => {
 
     return (
-        <div className="flex w-full gap-4 justify-end items-center font-mono uppercase py-20">
+        <div className="flex w-full gap-4 justify-end items-center font-mono uppercase py-20 text-white">
             <span>Visit us on: </span>
             <Link to="https://soundcloud.com/pomodaural" target="_blank">
                 <SoundcloudFill className="w-6 h-6"/>

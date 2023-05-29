@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 
 const Binaural: React.FC = (): JSX.Element => {
   const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
-  const [gainNode, setGainNode] = useState<GainNode | null>(null);
+  const [leftGainNode, setLeftGainNode] = useState<GainNode | null>(null);
+  const [rightGainNode, setRightGainNode] = useState<GainNode | null>(null);
   const [frequency1, setFrequency1] = useState(200);
   const [frequency2, setFrequency2] = useState(210);
   const [isPlaying, setPlaying] = useState(false);
@@ -11,21 +12,21 @@ const Binaural: React.FC = (): JSX.Element => {
 
   useEffect(() => {
     const newAudioContext = new window.AudioContext();
-    const newGainNode = newAudioContext.createGain();
-    newGainNode.connect(newAudioContext.destination);
+    const newLeftGainNode = newAudioContext.createGain();
+    const newRightGainNode = newAudioContext.createGain();
+    newLeftGainNode.connect(newAudioContext.destination);
+    newRightGainNode.connect(newAudioContext.destination);
 
     setAudioContext(newAudioContext);
-    setGainNode(newGainNode);
+    setLeftGainNode(newLeftGainNode);
+    setRightGainNode(newRightGainNode);
   }, []);
 
   const updateFrequency1 = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value);
     setFrequency1(value);
     if (oscillator1) {
-      oscillator1.frequency.setValueAtTime(
-        value,
-        audioContext!.currentTime
-      );
+      oscillator1.frequency.setValueAtTime(value, audioContext!.currentTime);
     }
   };
 
@@ -33,15 +34,12 @@ const Binaural: React.FC = (): JSX.Element => {
     const value = parseInt(event.target.value);
     setFrequency2(value);
     if (oscillator2) {
-      oscillator2.frequency.setValueAtTime(
-        value,
-        audioContext!.currentTime
-      );
+      oscillator2.frequency.setValueAtTime(value, audioContext!.currentTime);
     }
   };
 
   const handlePlay = () => {
-    if (audioContext && gainNode && !oscillator1 && !oscillator2) {
+    if (audioContext && !oscillator1 && !oscillator2) {
       const newOscillator1 = audioContext.createOscillator();
       const newOscillator2 = audioContext.createOscillator();
 
@@ -57,8 +55,8 @@ const Binaural: React.FC = (): JSX.Element => {
         audioContext.currentTime
       );
 
-      newOscillator1.connect(gainNode);
-      newOscillator2.connect(gainNode);
+      newOscillator1.connect(leftGainNode);
+      newOscillator2.connect(rightGainNode);
 
       setOscillator1(newOscillator1);
       setOscillator2(newOscillator2);
