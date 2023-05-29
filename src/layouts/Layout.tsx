@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { LayoutProps } from "../types/layout";
 import ToggleMenu from "../components/ToggleMenu";
@@ -19,7 +18,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           isMenuOpen ? "ml-[0%]" : ""
         }`}
       >
-        <Header />
         <div className={`min-h-screen flex items-center justify-center ${isMenuOpen ? "pl-[33%]" : ""}`}>
           {children}
         </div>
