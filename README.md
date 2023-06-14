@@ -1,7 +1,7 @@
 # Pomodaural
 🍅 Pomodoro Timer Web Application Integrated with Binaural Frequencies
 
-![pomodaural_cover](https://github.com/thomasjvu/pomodaural/assets/49382745/19e416d6-7a0d-4524-8cec-33784ee2feeb)
+![pomodaural_cover](https://github.com/thomasjvu/pomodaural/assets/49382745/45c5c40b-3649-4420-a6ad-67acc567047f)
 
 ## About
 Pomodaural is a web application that enables users to set a focused study time in Pomodoro fashion (25 minutes of study, and 5 minutes of rest).
