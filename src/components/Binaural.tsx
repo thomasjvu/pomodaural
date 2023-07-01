@@ -155,7 +155,7 @@ const Binaural: React.FC = (): JSX.Element => {
             </div>
             <div className="flex flex-col gap-2">
                 <h2 className="text-3xl font-display">Presets</h2>
-                <div id="preset-buttons" className="flex justify-between items-center">
+                <div id="preset-buttons" className="flex justify-between items-center gap-2">
                     <button
                         id="focusButton"
                         className="btn btn-accent"
