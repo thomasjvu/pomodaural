@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { YoutubeFill, TwitterFill, SoundcloudFill } from "./Icons";
+import { YoutubeFill, TwitterFill, SoundcloudFill, InstagramFill } from "./Icons";
 
 const SocialIcons: React.FC = (): JSX.Element => {
 
@@ -14,6 +14,9 @@ const SocialIcons: React.FC = (): JSX.Element => {
             </Link>
             <Link to="https://youtube.com/@pomodaural" target="_blank">
                 <YoutubeFill className="w-6 h-6"/>
+            </Link>
+            <Link to="https://instagram.com/pomodaural" target="_blank">
+                <InstagramFill className="w-6 h-6"/>
             </Link>
         </div>
     )
