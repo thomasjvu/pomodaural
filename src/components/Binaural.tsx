@@ -83,8 +83,9 @@ const Binaural: React.FC = (): JSX.Element => {
 
     return (
         <div id="binaural-controls" className="flex flex-col gap-5">
-            <div className="flex justify-between gap-20">
-                <div className="flex gap-5 flex-col">
+            <div id="frequency-controls" className="flex flex-col md:flex-row justify-between gap-20">
+                {/* Frequency One Controls */}
+                <div id="frequency-one" className="flex gap-5 flex-col">
                     <label htmlFor="frequency1" className="font-mono">
                         Frequency 1:
                     </label>
@@ -112,7 +113,8 @@ const Binaural: React.FC = (): JSX.Element => {
                         <span id="frequency1Value">{frequency1}Hz</span>
                     </div>
                 </div>
-                <div className="flex flex-col gap-5">
+                {/* Frequency Two Controls */}
+                <div id="frequency-two" className="flex flex-col gap-5">
                     <label htmlFor="frequency2" className="font-mono">
                         Frequency 2:
                     </label>
