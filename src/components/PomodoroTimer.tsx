@@ -105,7 +105,7 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ workTime, breakTime }) =>
     };
 
     return (
-        <div id="timer-group" className="flex flex-col gap-20 w-full justify-center items-center">
+        <div id="timer-group" className="flex flex-col gap-10 w-full justify-center items-center">
             {/* Clock Timer */}
             <div className="p-10 bg-base-200 rounded border border-primary-100 md:w-96 flex justify-center items-center">
                 <span id="timer" className="text-7xl md:text-9xl font-display">
@@ -114,19 +114,19 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ workTime, breakTime }) =>
             </div>
             {/* Mode Display */}
             <div className="w-full text-center">
-                <span id="mode-display" className="text-5xl md:text-7xl font-display uppercase">
+                <span id="mode-display" className="text-4xl md:text-7xl font-display uppercase">
                     {isBreakTime ? "Break Time!" : "Focus Time"}
                 </span>
             </div>
             {/* Timer Buttons */}
-            <div id="timer-buttons" className="flex flex-col md:flex-row gap-5 justify-between">
-                <button onClick={isRunning ? pausePomodoro : startPomodoro} className="btn rounded">
+            <div id="timer-buttons" className="flex flex-col md:flex-row gap-5 justify-between items-center">
+                <button onClick={isRunning ? pausePomodoro : startPomodoro} className="btn rounded w-full md:w-auto">
                     {isRunning ? "⏸ Pause" : "⏵ Start"}
                 </button>
-                <button onClick={resetTimer} className="btn rounded">
+                <button onClick={resetTimer} className="btn rounded w-full md:w-auto">
                     ↺ Reset
                 </button>
-                <button onClick={switchTimer} className="btn rounded">
+                <button onClick={switchTimer} className="btn rounded w-full md:w-auto">
                     ⇄ Switch Mode
                 </button>
                 <div className="flex items-center gap-2">
