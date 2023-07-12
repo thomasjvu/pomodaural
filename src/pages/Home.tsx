@@ -20,12 +20,16 @@ const Home: React.FC = () => {
 
     return (
         <Layout>
-            <div id="page-home" className="flex flex-col justify-start items-center gap-10 w-1/2">
-                <div className="flex justify-between w-1/2">
-                </div>
-                <button onClick={handleSwitchTimer} className="font-display uppercase tracking-wider">
-                    🕑 Switch Duration
-                </button>
+            <div id="page-home" className="flex flex-col justify-center items-center gap-10 w-1/2 py-20">
+                {isSwitched ? (
+                    <button onClick={handleSwitchTimer} className="font-display uppercase tracking-wider">
+                        🕑 Long Session
+                    </button>
+                ): (
+                    <button onClick={handleSwitchTimer} className="font-display uppercase tracking-wider">
+                        🕑 Short Session
+                    </button>
+                )}
                 <PomodoroTimer workTime={getCurrentDurations().work} breakTime={getCurrentDurations().break} />
                 <Binaural />
             </div>

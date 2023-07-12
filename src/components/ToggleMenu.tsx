@@ -11,7 +11,7 @@ const ToggleMenu: React.FC<ToggleMenuProps> = ({ isOpen, handleToggle }) => {
         <div id="toggle-menu">
             <div
                 className={`sidebar ${
-                    isOpen ? "fixed h-full top-0 left-0 w-1/3" : "hidden"
+                    isOpen ? "fixed h-full top-0 left-0 w-full xl:w-1/3" : "hidden"
                 } bg-neutral flex justify-center py-10`}>
                 {isOpen && (
                     <div className="flex flex-col items-center gap-10 px-16 w-full">
