@@ -106,15 +106,20 @@ const PomodoroTimer: React.FC<PomodoroTimerProps> = ({ workTime, breakTime }) =>
 
     return (
         <div id="timer-group" className="flex flex-col gap-20 w-full justify-center items-center">
-            <div className="p-10 bg-base-200 rounded md:w-96 flex justify-center items-center">
+            {/* Clock Timer */}
+            <div className="p-10 bg-base-200 rounded border border-primary-100 md:w-96 flex justify-center items-center">
                 <span id="timer" className="text-7xl md:text-9xl font-display">
                     {formatTime(timer)}
                 </span>
             </div>
-            <span id="display" className="text-7xl font-display">
-                {isBreakTime ? "Break Time!" : "Work Time!"}
-            </span>
-            <div id="timer-buttons" className="flex gap-5 justify-between">
+            {/* Mode Display */}
+            <div className="w-full text-center">
+                <span id="mode-display" className="text-5xl md:text-7xl font-display uppercase">
+                    {isBreakTime ? "Break Time!" : "Focus Time"}
+                </span>
+            </div>
+            {/* Timer Buttons */}
+            <div id="timer-buttons" className="flex flex-col md:flex-row gap-5 justify-between">
                 <button onClick={isRunning ? pausePomodoro : startPomodoro} className="btn rounded">
                     {isRunning ? "⏸ Pause" : "⏵ Start"}
                 </button>

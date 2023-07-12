@@ -143,7 +143,7 @@ const Binaural: React.FC = (): JSX.Element => {
                     </div>
                 </div>
             </div>
-            {/* play and pause buttons */}
+            {/* Play and Pause Buttons */}
             <div id="controls" className="flex w-full justify-between gap-5">
                 {isPlaying ? (
                     <button id="pauseButton" onClick={handlePause} disabled={!isPlaying} className={`btn w-full`}>
@@ -155,12 +155,14 @@ const Binaural: React.FC = (): JSX.Element => {
                     </button>
                 )}
             </div>
+            {/* Preset Frequencies */}
             <div className="flex flex-col gap-2">
                 <h2 className="text-3xl font-display">Presets</h2>
-                <div id="preset-buttons" className="flex justify-between items-center gap-2">
+                {/* Preset Frequency Buttons */}
+                <div id="preset-buttons" className="flex flex-col md:flex-row justify-between items-center gap-2">
                     <button
                         id="focusButton"
-                        className="btn btn-accent"
+                        className="btn btn-accent w-full md:w-1/6"
                         onClick={() => {
                             if (isPlaying) {
                                 handlePause();
@@ -173,7 +175,7 @@ const Binaural: React.FC = (): JSX.Element => {
                     </button>
                     <button
                         id="relaxButton"
-                        className="btn btn-accent"
+                        className="btn btn-accent w-full md:w-1/6"
                         onClick={() => {
                             if (isPlaying) {
                                 handlePause();
@@ -186,7 +188,7 @@ const Binaural: React.FC = (): JSX.Element => {
                     </button>
                     <button
                         id="meditationButton"
-                        className="btn btn-accent"
+                        className="btn btn-accent w-full md:w-1/6"
                         onClick={() => {
                             if (isPlaying) {
                                 handlePause();
@@ -199,7 +201,7 @@ const Binaural: React.FC = (): JSX.Element => {
                     </button>
                     <button
                         id="creativityButton"
-                        className="btn btn-accent"
+                        className="btn btn-accent w-full md:w-1/6"
                         onClick={() => {
                             if (isPlaying) {
                                 handlePause();
@@ -212,7 +214,7 @@ const Binaural: React.FC = (): JSX.Element => {
                     </button>
                     <button
                         id="energyButton"
-                        className="btn btn-accent"
+                        className="btn btn-accent w-full md:w-1/6"
                         onClick={() => {
                             if (isPlaying) {
                                 handlePause();
@@ -225,7 +227,7 @@ const Binaural: React.FC = (): JSX.Element => {
                     </button>
                     <button
                         id="sleepButton"
-                        className="btn btn-accent"
+                        className="btn btn-accent w-full md:w-1/6"
                         onClick={() => {
                             if (isPlaying) {
                                 handlePause();
