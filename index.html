@@ -1,30 +1,75 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="lofi">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-            name="description"
-            content="Pomodoro Timer application with Binuaral Beats for enhanced focus and creativity on any task like studying or meditating." />
-        <!-- Facebook Meta Tags -->
-        <meta property="og:url" content="https://pomodaural.com" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="Pomodaural - Pomodoro Timer with Binaural Beats" />
-        <meta property="og:description" content="Start focusing better using Pomodaural (Pomodoro + Binaural Beats)" />
-        <meta property="og:image" content="/open-graph-cover.png" />
-        <!-- Twitter Meta Tags -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="twitter:domain" content="pomodaural.com" />
-        <meta property="twitter:url" content="https://pomodaural.com" />
-        <meta name="twitter:title" content="Pomodaural - Pomodoro Timer with Binaural Beats" />
-        <meta name="twitter:description" content="Start focusing better using Pomodaural (Pomodoro + Binaural Beats)" />
-        <meta name="twitter:image" content="/open-graph-cover.png" />
-        <!-- Icon -->
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <title>Pomodaural</title>
-    </head>
-    <body>
-        <div id="root"></div>
-        <script type="module" src="/src/main.tsx"></script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Boost your productivity with Pomodaural, a Pomodoro timer integrated with binaural beats to enhance creativity, focus, and productivity."
+    />
+    <meta name="author" content="Thomas Vu" />
+    <title>
+      Pomodaural - Pomodoro Timer with Binaural Beats for Enhanced Focus
+    </title>
+    <link rel="canonical" href="https://pomodaural.com" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://pomodaural.com" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Pomodaural - Pomodoro Timer with Binaural Beats"
+    />
+    <meta
+      property="og:description"
+      content="Start focusing better using Pomodaural (Pomodoro + Binaural Beats)"
+    />
+    <meta
+      property="og:image"
+      content="https://pomodaural.com/open-graph-cover.png"
+    />
+    <meta property="og:site_name" content="Pomodaural" />
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content="pomodaural.com" />
+    <meta property="twitter:url" content="https://pomodaural.com" />
+    <meta
+      name="twitter:title"
+      content="Pomodaural - Pomodoro Timer with Binaural Beats"
+    />
+    <meta
+      name="twitter:description"
+      content="Start focusing better using Pomodaural (Pomodoro + Binaural Beats)"
+    />
+    <meta
+      name="twitter:image"
+      content="https://pomodaural.com/open-graph-cover.png"
+    />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "WebApplication",
+        "name": "Pomodaural",
+        "url": "https://pomodaural.com",
+        "description": "A Pomodoro timer integrated with binaural beats to enhance creativity, focus, and productivity.",
+        "applicationCategory": "Productivity",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "0"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
