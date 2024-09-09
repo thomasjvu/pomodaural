@@ -4,7 +4,6 @@ import {
   TwitterFill,
   SoundcloudFill,
   InstagramFill,
-  GumroadFill,
 } from "./Icons";
 
 const SocialIcons: React.FC = (): JSX.Element => {

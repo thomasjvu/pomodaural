@@ -16,7 +16,7 @@ const Binaural: React.FC<BinauralProps> = ({
   const [rightGainNode, setRightGainNode] = useState<GainNode | undefined>(
     undefined,
   );
-  const [channelMerger, setChannelMerger] = useState<ChannelMergerNode | null>(
+  const [_channelMerger, setChannelMerger] = useState<ChannelMergerNode | null>(
     null,
   );
   const [frequency1, setLocalFrequency1] = useState<number>(() => {
