@@ -9,6 +9,7 @@ const Binaural: React.FC<BinauralProps> = ({
   setFrequency1,
   setFrequency2,
 }) => {
+  // State for audio context and nodes
   const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
   const [leftGainNode, setLeftGainNode] = useState<GainNode | undefined>(
     undefined,
@@ -19,6 +20,8 @@ const Binaural: React.FC<BinauralProps> = ({
   const [_channelMerger, setChannelMerger] = useState<ChannelMergerNode | null>(
     null,
   );
+
+  // State for frequencies, with initial values from localStorage or default values
   const [frequency1, setLocalFrequency1] = useState<number>(() => {
     const savedFrequency = localStorage.getItem("frequency1");
     return savedFrequency ? parseInt(savedFrequency) : 200;
@@ -27,10 +30,12 @@ const Binaural: React.FC<BinauralProps> = ({
     const savedFrequency = localStorage.getItem("frequency2");
     return savedFrequency ? parseInt(savedFrequency) : 210;
   });
+
+  // State for play/pause mode, oscillators, and volume.
   const [isPlaying, setPlaying] = useState(false);
   const [oscillator1, setOscillator1] = useState<OscillatorNode | null>(null);
   const [oscillator2, setOscillator2] = useState<OscillatorNode | null>(null);
-  const [volume, setVolume] = useState<number>(0.5); // Default volume level (50%)
+  const [volume, setVolume] = useState<number>(0.75); // Default volume level (50%)
 
   // Initialize AudioContext and nodes
   useEffect(() => {
@@ -44,13 +49,14 @@ const Binaural: React.FC<BinauralProps> = ({
     newRightGainNode.connect(newChannelMerger, 0, 1); // Right channel
     newChannelMerger.connect(newAudioContext.destination);
 
+    // Set state with new audio nodes
     setAudioContext(newAudioContext);
     setLeftGainNode(newLeftGainNode);
     setRightGainNode(newRightGainNode);
     setChannelMerger(newChannelMerger);
   }, []);
 
-  // Update frequency and gain based on input
+  // Fn: Update frequency and gain based on input
   const updateFrequency =
     (
       setFrequency: React.Dispatch<React.SetStateAction<number>>,
@@ -95,6 +101,7 @@ const Binaural: React.FC<BinauralProps> = ({
       leftGainNode &&
       rightGainNode
     ) {
+      // Create and setup oscillators
       const newOscillator1 = audioContext.createOscillator();
       const newOscillator2 = audioContext.createOscillator();
 
@@ -145,8 +152,10 @@ const Binaural: React.FC<BinauralProps> = ({
     };
   }, []);
 
+  // Render Component UI
   return (
     <div id="binaural-controls" className="flex flex-col gap-5">
+      {/* Frequency Controls */}
       <div
         id="frequency-controls"
         className="flex flex-col md:flex-row justify-between gap-20"
