@@ -35,7 +35,7 @@ const Binaural: React.FC<BinauralProps> = ({
   const [isPlaying, setPlaying] = useState(false);
   const [oscillator1, setOscillator1] = useState<OscillatorNode | null>(null);
   const [oscillator2, setOscillator2] = useState<OscillatorNode | null>(null);
-  const [volume, setVolume] = useState<number>(0.75); // Default volume level (50%)
+  const [volume, setVolume] = useState<number>(0.33); // Default volume level (33%)
 
   // Initialize AudioContext and nodes
   useEffect(() => {
