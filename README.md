@@ -2,7 +2,7 @@
 
 🍅 A Pomodoro Timer Web Application Integrated with Binaural Frequencies
 
-![pomodaural_cover]('./public/pomodaural_cover.png')
+![pomodaural_cover](./public/pomodaural_cover.png)
 
 ## About
 
